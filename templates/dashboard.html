@@ -1,0 +1,85 @@
+{% extends 'adminmaster.html' %}
+{% block title %}
+Admin Dashboard
+{% endblock %}
+{% block content %}
+<!-- partial -->
+  {% if messages %}
+                    {% for message in messages %}
+                      <script>alert('{{ message }}');</script>
+                    {% endfor %}
+                  {% endif %}
+      <div class="main-panel">
+        <div class="content-wrapper">
+
+          <div class="row">
+            <div class="col-xl-12 grid-margin stretch-card flex-column">
+                <h5 class="mb-2 text-titlecase mb-4">Status statistics</h5>
+              <div class="row">
+                <div class="col-md-3 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                      <div class="d-flex justify-content-between align-items-center mb-2">
+                     <center> <p class="mb-0 text-muted">Total Sales</p></center>  
+                      </div>
+                      <h4>{{ts}}</h4>
+                    </div>
+                  </div>
+                </div>
+                  <div class="col-md-3 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                      <div class="d-flex justify-content-between align-items-center mb-2">
+                     <center> <p class="mb-0 text-muted">No Of Purchase</p></center>  
+                      </div>
+                      <h4>{{tp}}</h4>
+                    </div>
+                  </div>
+                </div>
+                  <div class="col-md-3 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                      <div class="d-flex justify-content-between align-items-center mb-2">
+                     <center> <p class="mb-0 text-muted">No Of Customer</p></center>  
+                      </div>
+                      <h4>{{tc}}</h4>
+                    </div>
+                  </div>
+                </div>
+                  <div class="col-md-3 grid-margin stretch-card">
+                  <div class="card">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                      <div class="d-flex justify-content-between align-items-center mb-2">
+                     <center> <p class="mb-0 text-muted">No Of Product</p></center>  
+                      </div>
+                      <h4>{{tpr}}</h4>
+                    </div>
+                  </div>
+                </div>
+               
+                
+              </div>
+              
+            </div>
+           
+          </div>
+
+         
+
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:partials/_footer.html -->
+        <footer class="footer">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024 <a href="https://www.bootstrapdash.com/" class="text-muted" target="_blank">Bootstrapdash</a>. All rights reserved.</span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center text-muted">Hand-crafted & made with <i class="typcn typcn-heart-full-outline text-danger"></i></span>
+                    </div>
+                </div>    
+            </div>        
+        </footer>
+        <!-- partial -->
+      </div>
+
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends 'adminmaster.html' %}
+{% block title %}
+ADDADMIN DASHBOARD
+{% endblock %}
+{% block content %}
+{% load static %}
+<!-- partial -->
+      <div class="main-panel">        
+        <div class="content-wrapper">
+          <div class="row">
+           <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Basic form elements</h4>
+                  <p class="card-description">
+                    Basic form elements
+                  </p>
+                  <form class="forms-sample" onsubmit="return check()" method="POST" action="/finalsale/{{billno}}">
+                    {% csrf_token %}
+                     <div class="form-group">
+                      <label for="name">PRODUCT NAME</label>
+                      <select class="form-control" id="product" name="productname" required title="Please select the product name">
+                  <option value="">-- Select Product Name --</option>
+                  {% for i in sms %}
+                  <option value="{{i.productname}}">{{i.productname}}</option>
+                  {% endfor %}
+                </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="name">Price</label>
+                      <input type="text" class="form-control" id="price" placeholder="Enter the Price" required title="please enter the Price" name="price"> 
+                    </div>
+                     <div class="form-group">
+                      <label for="name">QUANTITY</label>
+                      <input type="text" class="form-control" id="quantity" placeholder="quantity" required title="please enter the quantity" name="quantity"> 
+                    </div>
+                    <button type="register" class="btn btn-primary me-2" >ADD</button>
+                  </form>
+                </div>
+              </div>
+           </div>
+           <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Final sale</h4>
+                  
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>
+                            Product 
+                          </th>
+                          <th>
+                            Quantity
+                          </th>
+                          <th>
+                            Price
+                          </th>
+                          
+                          <th>
+                            Delete
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% if messages %}
+                        {% for message in messages %}
+                        <script>  alert('{{ message }}');</script> 
+                        {% endfor %}
+                        {% endif %}
+                        {% for i in temp %}
+                        <tr>
+              
+                          <td>
+                            {{i.productname}}
+                          </td>
+                          <td>
+                            {{i.quantity}}
+                          </td>
+                          <td>
+                            {{i.price}}
+                          </td>
+                          <td><a href="/deletesale/{{ i.id }}/{{billno}}"><img src="{% static 'logo/delete.jpg' %}" width="40px" height="40px"></a></td>
+                          </tr>
+                       {% endfor %}
+ 
+                    </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+              <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <form  method="POST" action="/salecomplete/{{billno}}">
+                      {% csrf_token %}
+                 <button type="register" class="btn btn-primary me-2" >Sale</button>
+                 </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+        <footer class="footer">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024 <a href="https://www.bootstrapdash.com/" class="text-muted" target="_blank">Bootstrapdash</a>. All rights reserved.</span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center text-muted">Hand-crafted & made with <i class="typcn typcn-heart-full-outline text-danger"></i></span>
+                    </div>
+                </div>    
+            </div>        
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+       {% endblock %}

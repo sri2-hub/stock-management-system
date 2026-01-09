@@ -1,0 +1,117 @@
+{% extends 'adminmaster.html' %}
+{% load static %}
+
+{% block title %}
+ADD CUSTOMER DASHBOARD
+{% endblock %}
+
+{% block content %}
+<div class="main-panel">        
+  <div class="content-wrapper">
+    <div class="row">
+
+      <!-- Add Customer Form -->
+      <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Add Customer</h4>
+            <p class="card-description">
+              Fill in the details below to add a new customer.
+            </p>
+
+            <form class="forms-sample" method="POST" action="/addcustomer/">
+              {% csrf_token %}
+
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" required>
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required>
+              </div>
+
+              <div class="form-group">
+                <label for="phonenumber">Phone Number</label>
+                <input type="text" class="form-control" id="phonenumber" name="phonenumber" placeholder="Enter Phone Number" required>
+              </div>
+
+              <div class="form-group">
+                <label for="address">Address</label>
+                <input type="text" class="form-control" id="address" name="address" placeholder="Enter Address" required>
+              </div>
+
+              <button type="submit" class="btn btn-primary me-2">Add</button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Customer List Table -->
+      <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Customer List</h4>
+
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Contact No</th>
+                    <th>Address</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% if messages %}
+                    {% for message in messages %}
+                      <script>alert('{{ message }}');</script>
+                    {% endfor %}
+                  {% endif %}
+
+                  {% for c in sms %}
+                  <tr>
+                    <td>{{ c.name }}</td>
+                    <td>{{ c.email }}</td>
+                    <td>{{ c.phonenumber }}</td>
+                    <td>{{ c.address }}</td>
+                    <td><a href="/editcustomer/{{ c.id }}"><img src="{% static 'logo/edit.jpg' %}" width="40px" height="40px"></a></td>
+                   <td> <a href="/deletecustomer/{{ c.id }}"><img src="{% static 'logo/delete.jpg' %}" width="40px" height="40px"></a></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+          <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">
+            Copyright © 2024 
+            <a href="https://www.bootstrapdash.com/" class="text-muted" target="_blank">Bootstrapdash</a>. 
+            All rights reserved.
+          </span>
+          <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center text-muted">
+            Hand-crafted & made with <i class="typcn typcn-heart-full-outline text-danger"></i>
+          </span>
+        </div>
+      </div>    
+    </div>        
+  </footer>
+
+</div>
+{% endblock %}

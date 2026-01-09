@@ -1,0 +1,91 @@
+{% extends 'adminmaster.html' %}
+{% block title %}
+ADDADMIN DASHBOARD
+{% endblock %}
+{% block content %}
+{% load static %}
+<!-- partial -->
+      <div class="main-panel">        
+        <div class="content-wrapper">
+          <div class="row">
+           <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <!-- <h4 class="card-title">Basic form elements</h4>
+                  <p class="card-description">
+                    Basic form elements
+                  </p> -->
+                  <form class="forms-sample" onsubmit="return check()" method="POST" action="/sale/">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="name">SUPPLIER NAME</label>
+                      <select class="form-control" id="supplier" name="supplier" required title="Please select the supplier name">
+                  <option value="">-- Select Supplier Name --</option>
+                  {% for i in sms %}
+                  <option value="{{i.id}}">{{i.name}}</option>
+                  {% endfor %}
+                </select>
+                    </div>
+                    <button type="register" class="btn btn-primary me-2" >SELECT PRODUCT</button>
+                  </form>
+                </div>
+              </div>
+           </div>
+                   <!--  _____________________ sale table____________________ -->
+            <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Total Sales</h4>
+            <p class="card-description">
+              View or manage all sales
+            </p>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Bill No</th>
+                    <th>Customer Name</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% if messages %}
+                    {% for message in messages %}
+                      <script>alert('{{ message }}');</script>
+                    {% endfor %}
+                  {% endif %}
+                  {% for i,j in sale.items %}
+                  <tr>
+                    <td>{{ i }}</td>
+                    <td>{{j.cust_name}}</td>
+                    <td>{{j.date}}</td>
+                    <td><a href="/finalsale/{{i}}"><img src="{% static 'logo/action.jpg' %}" width="50px" height="50px"></a></td>
+                    <td><a href="/deletetempsale/{{i}}"><img src="{% static 'logo/delete.jpg' %}" width="50px" height="50px"></a></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            </div>
+          </div>
+        </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+        <footer class="footer">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024 <a href="https://www.bootstrapdash.com/" class="text-muted" target="_blank">Bootstrapdash</a>. All rights reserved.</span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center text-muted">Hand-crafted & made with <i class="typcn typcn-heart-full-outline text-danger"></i></span>
+                    </div>
+                </div>    
+            </div>        
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+       {% endblock %}

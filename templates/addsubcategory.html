@@ -1,0 +1,104 @@
+{% extends 'adminmaster.html' %}
+{% block title %}
+ADDADMIN DASHBOARD
+{% endblock %}
+{% block content %}
+{% load static %}
+<!-- partial -->
+      <div class="main-panel">        
+        <div class="content-wrapper">
+          <div class="row">
+           <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <!-- <h4 class="card-title">Basic form elements</h4>
+                  <p class="card-description">
+                    Basic form elements
+                  </p> -->
+                  <form class="forms-sample" onsubmit="return check()" method="POST" action="/addsubcategory/">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="name">SELECT CATEGORY </label>
+                       <select class="form-control" id="subcategory" name="category" required>
+                  <option value="">-- Select Category --</option>
+                  {% for i in cat %}
+                  <option value="{{i.categoryname}}">{{i.categoryname}}</option>
+                  {% endfor %}
+                  
+                   </select>
+                   <div class="form-group">
+                    <label for="subcategory">Subcategory Name</label>
+                     <input type="text" class="form-control" id="subcategory" placeholder="Enter Subcategory Name" name="subcategory" required>
+                   </div>
+                    </div>
+                    <button type="register" class="btn btn-primary me-2" >SUBMIT</button>
+                  </form>
+                </div>
+              </div>
+           </div>
+           <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Sub-Category Table</h4>
+                  
+                  <div class="table-responsive">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th>
+                            Category Name
+                          </th>
+                          <th>
+                            SubCategory Name
+                          </th>
+                          <th>
+                            Edit
+                          </th>
+                          <th>
+                            Delete
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% if messages %}
+                        {% for message in messages %}
+                        <script>  alert('{{ message }}');</script> 
+                        {% endfor %}
+                        {% endif %}
+                        {% for i in sms %}
+                        <tr>
+                          <td>
+                            {{i.categoryname}}
+                          </td>
+                          <td>
+                            {{i.subcategoryname}}
+                          </td>
+                          <td><a href="/editsubcategory/{{i.id}}"><img src="{% static 'logo/edit.jpg' %}" width="50px" height="50px"></a></td>
+                          <td><a href="/deletesubcategory/{{i.id}}"><img src="{% static 'logo/delete.jpg' %}" width="50px" height="50px"></a></td>
+                        </tr>
+                       {% endfor %}
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- content-wrapper ends -->
+        <!-- partial:../../partials/_footer.html -->
+        <footer class="footer">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-sm-flex justify-content-center justify-content-sm-between">
+                        <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2024 <a href="https://www.bootstrapdash.com/" class="text-muted" target="_blank">Bootstrapdash</a>. All rights reserved.</span>
+                        <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center text-muted">Hand-crafted & made with <i class="typcn typcn-heart-full-outline text-danger"></i></span>
+                    </div>
+                </div>    
+            </div>        
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+       {% endblock %}

@@ -1,0 +1,162 @@
+{% extends 'adminmaster.html' %}
+{% block title %}
+ADD PRODUCT DASHBOARD
+{% endblock %}
+{% block content %}
+{% load static %}
+<!-- partial -->
+<div class="main-panel">        
+  <div class="content-wrapper">
+    <div class="row">
+      <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Add Product</h4>
+            <p class="card-description">
+              Fill in the details below to add a new product.
+            </p>
+
+            <form class="forms-sample" onsubmit="return check()" method="POST" enctype="multipart/form-data" action="/addproduct/">
+              {% csrf_token %}
+
+              <div class="form-group">
+                <label for="product">PRODUCT NAME</label>
+                <input type="text" class="form-control" id="productname" name="productname" placeholder="Product Name" required title="Please enter the product name">
+              </div>
+
+              <div class="form-group">
+                <label for="category">CATEGORY</label>
+                <select class="form-control" id="category" name="category" required title="Please select a category">
+                  <option value="">-- Select Category --</option>
+                  {% for i in cat %}
+                  <option value="{{i.categoryname}}">{{i.categoryname}}</option>
+                  {% endfor %}
+                </select>
+              </div>
+                  
+              <div class="form-group">
+                <label for="subcategory">SUB CATEGORY</label>
+                <select class="form-control" id="subcategory" name="subcategory" required title="Please select a subcategory">
+                  <option value="">--Select Subcategory--</option>
+                  {% for i in subcat %}
+                  <option value="{{i.subcategoryname}}">{{i.subcategoryname}}</option>
+                  {% endfor %}
+                
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="mrp">MRP</label>
+                <input type="text" class="form-control" id="mrp" name="mrp" placeholder="Amount" required title="Please enter the MRP">
+              </div>
+
+              <div class="form-group">
+                <label for="hsn">HSN NO</label>
+                <input type="text" class="form-control" id="hsn" name="hsn" placeholder="HSN NO" required title="Please enter the HSN number">
+              </div>
+
+              <div class="form-group">
+                <label for="color">COLOR</label>
+                <input type="text" class="form-control" id="color" name="color" placeholder="Color" required title="Please enter the color">
+              </div>
+
+              <div class="form-group">
+                <label for="brand">BRAND</label>
+                <input type="text" class="form-control" id="brand" name="brand" placeholder="Brand" required title="Please enter the brand">
+              </div>
+
+              <div class="form-group">
+                <label for="warrenty">WARRANTY</label>
+                <input type="text" class="form-control" id="warrenty" name="warrenty" placeholder="Warranty" required title="Please enter the warranty period">
+              </div>
+
+              <div class="form-group">
+                <label for="expiry">EXPIRY DATE</label>
+                <input type="date" class="form-control" id="expiry" name="expiry" placeholder="Expiry Date" required title="Please enter the expiry date">
+              </div>
+
+              <div class="form-group">
+                <label for="image">IMAGE</label>
+                <input type="file" class="form-control" id="image" name="image" accept="image/*" required title="Please upload an image of the product">
+              </div>
+
+              <div class="form-group">
+                <label for="description">DESCRIPTION</label>
+                <input type="text" class="form-control" id="description" name="description" placeholder="Description" required title="Please enter a description">
+              </div>
+
+              <button type="submit" class="btn btn-primary me-2">ADD</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Optional Table Section (for listing added products) -->
+      <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Product List</h4>
+            <p class="card-description">
+              View or manage your added products.
+            </p>
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Category</th>
+                    <th>Subcategory</th>
+                    <th>MRP</th>
+                    <th>Brand</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% if messages %}
+                    {% for message in messages %}
+                      <script>alert('{{ message }}');</script>
+                    {% endfor %}
+                  {% endif %}
+                  {% for i in product %}
+                  <tr>
+                    <td>{{ i.productname }}</td>
+                    <td>{{ i.category }}</td>
+                    <td>{{ i.subcategory }}</td>
+                    <td>{{ i.mrp }}</td>
+                    <td>{{ i.brand }}</td>
+                    <td><a href="/editproduct/{{ i.id }}"><img src="{% static 'logo/edit.jpg' %}" width="40px" height="40px"></a></td>
+                    <td><a href="/deleteproduct/{{ i.id }}"><img src="{% static 'logo/delete.jpg' %}" width="40px" height="40px"></a></td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-sm-flex justify-content-center justify-content-sm-between">
+          <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">
+            Copyright © 2024 
+            <a href="https://www.bootstrapdash.com/" class="text-muted" target="_blank">Bootstrapdash</a>. 
+            All rights reserved.
+          </span>
+          <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center text-muted">
+            Hand-crafted & made with <i class="typcn typcn-heart-full-outline text-danger"></i>
+          </span>
+        </div>
+      </div>    
+    </div>        
+  </footer>
+  <!-- partial -->
+</div>
+<!-- main-panel ends -->
+{% endblock %}

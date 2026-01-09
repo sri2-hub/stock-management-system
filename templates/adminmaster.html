@@ -1,0 +1,224 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title> {% block title %} {% endblock %}</title>
+  <!-- base:css -->
+  <link rel="stylesheet" href="/static/assets/vendors/typicons/typicons.css">
+  <link rel="stylesheet" href="/static/assets/vendors/css/vendor.bundle.base.css">
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="/static/assets/css/style.css">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="/static/assets/images/favicon.ico" />
+</head>
+<body>
+  <div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="navbar-brand-wrapper d-flex justify-content-center">
+        <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
+          <a class="navbar-brand brand-logo" href="index.html"><img src="../../../{% static 'logo/stocklogo.jpeg' %}" alt="logo"/></a>
+          <a class="navbar-brand brand-logo-mini" href="index.html"><img src="../../../static/assets/images/logo-mini.svg" alt="logo"/></a>
+          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            <span class="typcn typcn-th-menu"></span>
+          </button>
+        </div>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <ul class="navbar-nav me-lg-2">
+          <li class="nav-item nav-profile dropdown">
+            <a class="nav-link" href="#" data-bs-toggle="dropdown" id="profileDropdown">
+              <img src="../media/{{adm.img}}" alt="profile"/>
+              <span class="nav-profile-name">{{adm.name}}</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+              <a class="dropdown-item">
+                <i class="typcn typcn-cog-outline text-primary"></i>
+                Settings
+              </a>
+              <a class="dropdown-item" href="/adminlogin">
+                <i class="typcn typcn-eject text-primary"></i>
+                Logout
+              </a>
+            </div>
+          </li>
+          <li class="nav-item nav-user-status dropdown">
+              <p class="mb-0"></p>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item nav-date dropdown">
+            <!-- <a class="nav-link d-flex justify-content-center align-items-center" href="javascript:;">
+              <h6 class="date mb-0">Today : Mar 23</h6>
+              <i class="typcn typcn-calendar"></i>
+            </a> -->
+          </li>
+          
+          <li class="nav-item dropdown me-0">
+            <a class="nav-link  d-flex align-items-center justify-content-center" id="notificationDropdown" href="/adminlogin" >
+              <i class="typcn icon typcn-power-outline mx-0"></i>
+             
+            </a>
+           
+          </li>
+        </ul>
+        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+          <span class="typcn typcn-th-menu"></span>
+        </button>
+      </div>
+    </nav>
+    <!-- partial -->
+    <nav class="navbar-breadcrumb col-xl-12 col-12 d-flex flex-row p-0">
+      <div class="navbar-links-wrapper d-flex align-items-stretch">
+        <div class="nav-link">
+          <a href="javascript:;"><i class="typcn typcn-calendar-outline"></i></a>
+        </div>
+        <div class="nav-link">
+          <a href="javascript:;"><i class="typcn typcn-mail"></i></a>
+        </div>
+        <div class="nav-link">
+          <a href="javascript:;"><i class="typcn typcn-folder"></i></a>
+        </div>
+        <div class="nav-link">
+          <a href="javascript:;"><i class="typcn typcn-document-text"></i></a>
+        </div>
+      </div>
+      <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <ul class="navbar-nav me-lg-2">
+          <li class="nav-item ms-0">
+            <h4 class="mb-0">ADDADMIN</h4>
+          </li>
+          <li class="nav-item">
+            <div class="d-flex align-items-baseline">
+              <p class="mb-0">Components</p>
+              <i class="typcn typcn-chevron-right"></i>
+              <p class="mb-0">Add Admin</p>
+            </div>
+          </li>
+        </ul>
+        <ul class="navbar-nav navbar-nav-right">
+          <li class="nav-item nav-search d-none d-md-block me-0">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search..." aria-label="search" aria-describedby="search">
+              <div class="input-group-prepend d-flex">
+                <span class="input-group-text" id="search">
+                  <i class="typcn typcn-zoom"></i>
+                </span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container-fluid page-body-wrapper">      
+      <!-- partial:partials/_sidebar.html -->
+      <nav class="sidebar sidebar-offcanvas" id="sidebar">
+        <ul class="nav">
+          <li class="nav-item">
+            <a class="nav-link" href="/dashboard">
+              <i class="typcn typcn-device-desktop menu-icon"></i>
+              <span class="menu-title">DASHBOARD</span>
+              <div class="badge badge-danger">new</div>
+            </a>
+          </li>          
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+              <i class="typcn typcn-document-text menu-icon"></i>
+              <span class="menu-title">Component </span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="ui-basic">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/addcategory/">Category</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/addsubcategory/">Sub Category</a></li>              
+                <li class="nav-item"> <a class="nav-link" href="/addproduct/">Product</a></li>
+              </ul>
+            </div>
+          </li>          
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+              <i class="typcn typcn-film menu-icon"></i>
+              <span class="menu-title">User</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="form-elements">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"><a class="nav-link" href="/addadmin/">Admin</a></li>
+                <li class="nav-item"><a class="nav-link" href="/addcustomer/">Customer</a></li>                
+              </ul>
+            </div>
+          </li>          
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
+              <i class="typcn typcn-chart-pie-outline menu-icon"></i>
+              <span class="menu-title">Billing</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="charts">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/sale/">Sale</a></li>
+                <li class="nav-item"> <a class="nav-link" href="/purchase/">Purchase</a></li>
+              </ul>
+            </div>
+          </li>
+                    
+                   
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+              <i class="typcn typcn-user-add-outline menu-icon"></i>
+              <span class="menu-title">Report</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="auth">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="/allstock/">Stock </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/allsale/"> All Sales </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/allpurchase/"> All Purchase </a></li>
+                <li class="nav-item"> <a class="nav-link" href="/allaccount"> Accounts Report </a></li>
+                                    
+              </ul>
+            </div>
+          </li>                            
+        
+        </ul>
+      </nav>
+
+{% block content %}
+{% endblock %}
+
+      
+
+
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- base:js -->
+  <script src="/static/assets/vendors/js/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <script src="/static/assets/vendors/chart.js/chart.umd.js"></script>
+  <script src="/static/assets/js/jquery.cookie.js"></script>
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="/static/assets/js/off-canvas.js"></script>
+  <script src="/static/assets/js/hoverable-collapse.js"></script>
+  <script src="/static/assets/js/template.js"></script>
+  <script src="/static/assets/js/settings.js"></script>
+  <script src="/static/assets/js/todolist.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="/static/assets/js/dashboard.js"></script>
+  <!-- End custom js for this page-->
+</body>
+
+</html>
